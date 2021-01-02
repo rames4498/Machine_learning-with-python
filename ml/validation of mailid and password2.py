@@ -3,6 +3,8 @@ n = input("please provide valid mailpwd: ")
 a = 0
 spec =  "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
 spec = list(spec)
+flag = True
+
 def password():
     k,c,d,j = 0,0,0,0
     for b in n:
@@ -22,18 +24,17 @@ def password():
     else:
         print("Invalid password")     
 for h in m:
-    if h == "@":
+    if ((h == "@") & (m[0] != ".") & (m[0] not in spec) & (m[-1] not in spec)):
+        flag = False
         r = m.index(h)
-        for l in range(r,len(m)):
-            if m[l] == ".":
-                print("Valid emailid")
+        #for l in range(r+2,len(m)):
+        if (("@" in m[r:]) & (m[r+1] != ".")):
+            #if (m[l] == "."):
+                print("Valid emailAdress")
                 password()
                 break
-            else:
-                a = a+1
-                if a == (len(m)-r):
-                    print("Invalid emailid")
-                
+        else:
+            print("Invalid emailAdress")
     
-
-                        
+if flag == True:
+  print("Invalid emailAdress")
